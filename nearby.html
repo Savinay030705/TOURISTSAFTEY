@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Shield - Nearby Help</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    header {
+      background: #27ae60;
+      color: white;
+      padding: 15px;
+    }
+    section {
+      padding: 30px;
+    }
+    .card {
+      background: white;
+      margin: 15px auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 400px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    h2 {
+      color: #2c3e50;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    a {
+      display: block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #27ae60;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🚑 Nearby Help & Emergency</h1>
+  </header>
+
+  <section>
+    <div class="card">
+      <h2>🏥 City Hospital</h2>
+      <p>Distance: 1.2 km</p>
+      <p>Contact: +91 98765 43210</p>
+      <button onclick="callHelp('City Hospital')">📞 Call</button>
+    </div>
+
+    <div class="card">
+      <h2>👮 Police Station</h2>
+      <p>Distance: 800 m</p>
+      <p>Contact: 100</p>
+      <button onclick="callHelp('Police Station')">📞 Call</button>
+    </div>
+
+    <div class="card">
+      <h2>🩺 Dr. Sharma Clinic</h2>
+      <p>Distance: 2.5 km</p>
+      <p>Contact: +91 91234 56789</p>
+      <button onclick="callHelp('Dr. Sharma Clinic')">📞 Call</button>
+    </div>
+
+    <a href="TripShield.html">⬅ Back to Home</a>
+  </section>
+
+  <script>
+    function callHelp(place) {
+      alert("Connecting to " + place + "...");
+    }
+  </script>
+
+</body>
+</html>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background: #f9f9f9;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 15px;
+    }
+    section {
+      padding: 40px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    a {
+      text-decoration: none;
+      color: #3498db;
+    }
+  </style>  
+</head>

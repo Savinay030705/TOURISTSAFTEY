@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Shield - Alerts</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background: #f9f9f9;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 15px;
+    }
+    section {
+      padding: 40px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    a {
+      text-decoration: none;
+      color: #3498db;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🌦️ Weather & Safety Alerts</h1>
+  </header>
+
+  <section>
+    <p id="weather-info" style="font-size: 18px; margin-top: 15px;">
+      Current Weather: <strong>Sunny, 30°C</strong>
+    </p>
+    <p id="risk-info" style="font-size: 18px; color: red; margin-top: 10px;">
+      Risk Alert: <strong>⚠️ High theft risk reported in this area</strong>
+    </p>
+
+    <button onclick="updateAlert()">🔄 Refresh Alert</button>
+    <br><br>
+    <a href="TripShield.html">⬅ Back to Home</a>
+  </section>
+
+  <script>
+    function updateAlert() {
+      const weatherOptions = [
+        "Sunny, 30°C",
+        "Rainy, 24°C",
+        "Cloudy, 28°C",
+        "Storm Warning, 22°C"
+      ];
+      const riskOptions = [
+        "✅ Safe to travel",
+        "⚠️ High theft risk reported",
+        "⚠️ Night travel not advised",
+        "✅ No active risks"
+      ];
+
+      document.getElementById("weather-info").innerHTML =
+        "Current Weather: <strong>" + weatherOptions[Math.floor(Math.random() * weatherOptions.length)] + "</strong>";
+
+      document.getElementById("risk-info").innerHTML =
+        "Risk Alert: <strong>" + riskOptions[Math.floor(Math.random() * riskOptions.length)] + "</strong>";
+    }
+  </script>
+
+</body>
+</html>

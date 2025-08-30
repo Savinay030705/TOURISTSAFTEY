@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trip Shield — Travel Safe, Anywhere</title>
+  <style>
+    :root{
+      --bg:#0b132b;         /* deep navy */
+      --card:#1c2541;       /* dark slate */
+      --muted:#3a506b;      /* denim */
+      --accent:#5bc0be;     /* teal */
+      --accent-2:#f4d35e;   /* amber */
+      --text:#e6eef8;       /* near white */
+      --ok:#34d399;         /* green */
+      --warn:#f59e0b;       /* orange */
+      --bad:#ef4444;        /* red */
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 18px;
+    }
+    *{box-sizing: border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text);
+      background:linear-gradient(180deg, #0b132b 0%, #111d3a 100%);
+      letter-spacing:.2px;
+    }
+    a{color:var(--accent);text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{
+      position:sticky;top:0;z-index:10;
+      background:rgba(11,19,43,.85);backdrop-filter: blur(6px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:14px 24px;
+    }
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .logo{width:34px;height:34px;border-radius:50%;
+      background: conic-gradient(from 210deg, var(--accent), #7ed7d6, var(--accent));
+      display:grid;place-items:center;box-shadow: var(--shadow);
+    }
+    .logo svg{width:20px;height:20px;fill:#072a2a}
+    .nav a{opacity:.9;margin:0 8px}
+    .nav a:hover{opacity:1}
+
+    /* hero */
+    .hero{padding:56px 24px 32px; text-align:center}
+    .hero h1{font-size:clamp(28px, 5vw, 48px);margin:0 0 8px}
+    .hero p{opacity:.9;margin:0 auto;max-width:720px}
+    .cta-row{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+    .btn{border:0;border-radius:999px;padding:12px 18px;font-weight:700;cursor:pointer}
+    .btn-primary{background:var(--accent);color:#052e2d}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--text)}
+    .btn-danger{background:var(--bad);color:white}
+
+    /* grid cards */
+    .grid{display:grid;gap:18px;margin:28px 0;grid-template-columns:repeat(auto-fit, minmax(260px,1fr))}
+    .card{
+      background:linear-gradient(180deg, rgba(92,192,190,.18), rgba(0,0,0,.1));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      padding:18px;box-shadow:var(--shadow)
+    }
+    .card h3{margin:0 0 6px;font-size:18px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.08);font-size:12px}
+
+    /* sections */
+    section{padding:10px 24px}
+    h2{margin:0 0 8px;font-size:22px}
+    .muted{opacity:.8}
+
+    /* map mock */
+    .map{height:300px;border-radius:var(--radius);background:
+      radial-gradient(circle at 20% 30%, rgba(91,192,190,.25), transparent 200px),
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400"><rect width="100%" height="100%" fill="%231c2541"/><g stroke="%233a506b" stroke-width="1" opacity="0.45"><line x1="0" y1="0" x2="0" y2="400"/><line x1="20" y1="0" x2="20" y2="400"/><line x1="40" y1="0" x2="40" y2="400"/><line x1="60" y1="0" x2="60" y2="400"/><line x1="80" y1="0" x2="80" y2="400"/><line x1="100" y1="0" x2="100" y2="400"/><line x1="120" y1="0" x2="120" y2="400"/><line x1="140" y1="0" x2="140" y2="400"/><line x1="160" y1="0" x2="160" y2="400"/><line x1="180" y1="0" x2="180" y2="400"/><line x1="200" y1="0" x2="200" y2="400"/><line x1="220" y1="0" x2="220" y2="400"/><line x1="240" y1="0" x2="240" y2="400"/><line x1="260" y1="0" x2="260" y2="400"/><line x1="280" y1="0" x2="280" y2="400"/><line x1="300" y1="0" x2="300" y2="400"/><line x1="320" y1="0" x2="320" y2="400"/><line x1="340" y1="0" x2="340" y2="400"/><line x1="360" y1="0" x2="360" y2="400"/><line x1="380" y1="0" x2="380" y2="400"/><line x1="400" y1="0" x2="400" y2="400"/><line x1="420" y1="0" x2="420" y2="400"/><line x1="440" y1="0" x2="440" y2="400"/><line x1="460" y1="0" x2="460" y2="400"/><line x1="480" y1="0" x2="480" y2="400"/><line x1="500" y1="0" x2="500" y2="400"/><line x1="520" y1="0" x2="520" y2="400"/><line x1="540" y1="0" x2="540" y2="400"/><line x1="560" y1="0" x2="560" y2="400"/><line x1="580" y1="0" x2="580" y2="400"/><line x1="600" y1="0" x2="600" y2="400"/><line x1="620" y1="0" x2="620" y2="400"/><line x1="640" y1="0" x2="640" y2="400"/><line x1="660" y1="0" x2="660" y2="400"/><line x1="680" y1="0" x2="680" y2="400"/><line x1="700" y1="0" x2="700" y2="400"/><line x1="720" y1="0" x2="720" y2="400"/><line x1="740" y1="0" x2="740" y2="400"/><line x1="760" y1="0" x2="760" y2="400"/><line x1="780" y1="0" x2="780" y2="400"/><line x1="0" y1="0" x2="800" y2="0"/><line x1="0" y1="20" x2="800" y2="20"/><line x1="0" y1="40" x2="800" y2="40"/><line x1="0" y1="60" x2="800" y2="60"/><line x1="0" y1="80" x2="800" y2="80"/><line x1="0" y1="100" x2="800" y2="100"/><line x1="0" y1="120" x2="800" y2="120"/><line x1="0" y1="140" x2="800" y2="140"/><line x1="0" y1="160" x2="800" y2="160"/><line x1="0" y1="180" x2="800" y2="180"/><line x1="0" y1="200" x2="800" y2="200"/><line x1="0" y1="220" x2="800" y2="220"/><line x1="0" y1="240" x2="800" y2="240"/><line x1="0" y1="260" x2="800" y2="260"/><line x1="0" y1="280" x2="800" y2="280"/><line x1="0" y1="300" x2="800" y2="300"/><line x1="0" y1="320" x2="800" y2="320"/><line x1="0" y1="340" x2="800" y2="340"/><line x1="0" y1="360" x2="800" y2="360"/><line x1="0" y1="380" x2="800" y2="380"/></g></svg>') center/cover;
+      position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.08)
+    }
+    .pin{position:absolute;transform:translate(-50%,-100%);}
+    .pin svg{filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
+
+    /* split */
+    .split{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    @media (max-width:900px){.split{grid-template-columns:1fr}}
+
+    /* table-ish */
+    .list{display:grid;gap:10px}
+    .row{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+
+    /* modal */
+    dialog{border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:0;background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+    .modal-header{padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center}
+    .modal-body{padding:16px}
+    .close{background:transparent;border:0;color:var(--text);font-size:20px;cursor:pointer}
+
+    /* ratings */
+    .stars{display:inline-flex;gap:6px}
+    .star{width:22px;height:22px;cursor:pointer;opacity:.6}
+    .star.active{opacity:1;filter: drop-shadow(0 0 4px rgba(244,211,94,.6))}
+
+    /* footer */
+    footer{margin:40px 0 10px;opacity:.7;text-align:center}
+
+    /* toast */
+    .toast{position:fixed;bottom:18px;right:18px;background:#0d1b2a;color:var(--text);padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow);opacity:0;transform:translateY(10px);transition:.3s}
+    .toast.show{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav container">
+      <div class="brand"><div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2l7 3v6c0 5-3.5 9.7-7 11-3.5-1.3-7-6-7-11V5l7-3z"></path></svg>
+      </div><span>Trip Shield</span></div>
+      <nav>
+        <ul>
+        <a href="#signup">Sign Up</a>
+        <a href="#map">Guide</a>
+        <a href="#features">Features</a>
+        <a href="#translate">Translate</a>
+        <a href="#volunteer">Volunteer</a>
+        <a href="#ratings">Ratings</a>
+        <li><a href="alerts.html">Alerts</a></li>
+        <li><a href="nearby.html">Nearby Help</a></li>
+
+        <ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Travel Safe. Get Help Fast. Stay Informed.</h1>
+      <p>Trip Shield guides tourists to destinations, sends instant SOS, shows risk alerts from local history, translates conversations, connects volunteers, and even supports safety options without internet via satellite/SMS/Bluetooth mesh (simulated).</p>
+      <div class="cta-row">
+        <button class="btn btn-danger" id="sosBtn">🚨 SOS — Need Help</button>
+        <button class="btn btn-primary" id="simulateRoute">🧭 Start Guided Route</button>
+        <button class="btn btn-ghost" id="toggleOffline">📡 Toggle Offline Mode</button>
+      </div>
+      <p class="muted" style="margin-top:10px">Offline mode simulates no active internet and switches to fallback delivery.</p>
+    </div>
+  </section>
+
+  <section class="container split" id="map">
+    <div class="card">
+      <h2>City Guide & Route</h2>
+      <p class="muted">This is a mock map. Click anywhere to drop a pin and we’ll preview a safe route with risk checks.</p>
+      <div class="map" id="mapMock" aria-label="Map mock">
+        <!-- dynamic pins -->
+      </div>
+      <div class="list" style="margin-top:12px">
+        <div class="row"><span>Route Status</span><span id="routeStatus" class="pill">Idle</span></div>
+        <div class="row"><span>Risk Level</span><span id="riskLevel" class="pill">—</span></div>
+        <div class="row"><span>Offline Fallback</span><span id="offlineStatus" class="pill">Online</span></div>
+      </div>
+    </div>
+    <div class="card" id="features">
+      <h2>Key Features</h2>
+      <div class="list">
+        <div class="row"><span>Instant SOS</span><span class="pill">Police • Ambulance • Fire</span></div>
+        <div class="row"><span>Risk Alerts</span><span class="pill">History-aware</span></div>
+        <div class="row"><span>Language Translation</span><span class="pill">On-device demo</span></div>
+        <div class="row"><span>Volunteer Network</span><span class="pill">Nearby helpers</span></div>
+        <div class="row"><span>Safety Ratings</span><span class="pill">Community powered</span></div>
+        <div class="row"><span>Offline Support</span><span class="pill">SMS • Satellite • Mesh</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container split" id="translate">
+    <div class="card">
+      <h2>Quick Translation</h2>
+      <p class="muted">Pick a phrase and language to ask for help from locals.</p>
+      <div class="list">
+        <label class="row" style="gap:12px">
+          <span>Phrase</span>
+          <select id="phraseSel">
+            <option value="I need help">I need help</option>
+            <option value="Call the ambulance">Call the ambulance</option>
+            <option value="I am lost">I am lost</option>
+            <option value="Where is the police station?">Where is the police station?</option>
+          </select>
+        </label>
+        <label class="row" style="gap:12px">
+          <span>Language</span>
+          <select id="langSel">
+            <option value="hi">Hindi</option>
+            <option value="mr">Marathi</option>
+            <option value="ta">Tamil</option>
+            <option value="bn">Bengali</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+          </select>
+        </label>
+        <div class="row"><span>Translation</span><span id="translation" class="pill">—</span></div>
+        <button class="btn btn-primary" id="copyTrans">Copy</button>
+      </div>
+    </div>
+
+    <div class="card" id="volunteer">
+      <h2>Volunteer to Help</h2>
+      <p class="muted">Local residents can register to assist tourists in emergencies.</p>
+      <form id="volForm" class="list">
+        <label class="row" style="gap:12px"><span>Name</span><input id="vName" required placeholder="Your name"/></label>
+        <label class="row" style="gap:12px"><span>Phone</span><input id="vPhone" required placeholder="Contact number"/></label>
+        <label class="row" style="gap:12px"><span>Area</span><input id="vArea" required placeholder="Neighborhood"/></label>
+        <button class="btn btn-primary" type="submit">Register</button>
+      </form>
+      <div style="margin-top:12px">
+        <h3 style="margin:0 0 6px">Nearby Volunteers</h3>
+        <div id="vList" class="list"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" id="ratings">
+    <div class="card">
+      <h2>Safety Ratings</h2>
+      <p class="muted">Rate how safe you felt in this area (stored locally for demo).</p>
+      <div class="stars" id="stars"></div>
+      <div id="ratingMsg" style="margin-top:8px" class="muted">No rating yet.</div>
+    </div>
+
+    <div class="card">
+      <h2>Offline Safety Options</h2>
+      <p class="muted">When offline, Trip Shield switches to fallback delivery (simulated).</p>
+      <div class="list">
+        <div class="row"><span>SMS Fallback</span><span class="pill">Auto-send queued SOS</span></div>
+        <div class="row"><span>Bluetooth Mesh</span><span class="pill">Broadcast distress to nearby users</span></div>
+        <div class="row"><span>Satellite (Govt)</span><span class="pill">If device/service available</span></div>
+      </div>
+    </div>
+    <!-- SIGNUP SECTION -->
+<section class="container" id="signup">
+  <div class="card">
+    <h2>Sign Up / Login</h2>
+    <p class="muted">Create an account to save your preferences, routes, and safety data (demo only, uses localStorage).</p>
+    
+    <!-- Sign Up Form -->
+    <form id="signupForm" class="list">
+      <label class="row" style="gap:12px">
+        <span>Email</span>
+        <input id="suEmail" type="email" required placeholder="Enter your email">
+      </label>
+      <label class="row" style="gap:12px">
+        <span>Password</span>
+        <input id="suPass" type="password" required placeholder="Enter password">
+      </label>
+      <button class="btn btn-primary" type="submit">Sign Up</button>
+    </form>
+
+    <hr style="margin:18px 0; border:0; border-top:1px solid rgba(255,255,255,.1)">
+
+    <!-- Login Form -->
+    <form id="loginForm" class="list">
+      <label class="row" style="gap:12px">
+        <span>Email</span>
+        <input id="liEmail" type="email" required placeholder="Enter your email">
+      </label>
+      <label class="row" style="gap:12px">
+        <span>Password</span>
+        <input id="liPass" type="password" required placeholder="Enter password">
+      </label>
+      <button class="btn btn-ghost" type="submit">Login</button>
+    </form>
+
+    <div id="authMsg" style="margin-top:10px" class="muted">Not logged in.</div>
+  </div>
+</section>
+
+  </section>
+
+  <footer class="container">© 2025 Trip Shield • Demo UI (no real services invoked)</footer>
+
+  <!-- SOS Modal -->
+  <dialog id="sosModal">
+    <div class="modal-header">
+      <strong>Emergency SOS</strong>
+      <button class="close" id="closeModal">×</button>
+    </div>
+    <div class="modal-body">
+      <p id="sosStatus">Preparing request…</p>
+      <div class="list" style="margin-top:10px">
+        <div class="row"><span>Location</span><span id="sosLoc" class="pill">Unknown</span></div>
+        <div class="row"><span>Delivery Mode</span><span id="sosMode" class="pill">Online</span></div>
+        <div class="row"><span>ETA (simulated)</span><span id="sosEta" class="pill">—</span></div>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ------- small helpers -------
+    const $ = sel => document.querySelector(sel);
+    const toast = (msg)=>{ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2600); };
+
+    // ------- offline toggle -------
+    let OFFLINE = false;
+    $('#toggleOffline').addEventListener('click', ()=>{
+      OFFLINE = !OFFLINE;
+      $('#offlineStatus').textContent = OFFLINE ? 'Offline' : 'Online';
+      toast(OFFLINE ? 'Offline mode enabled — using fallback delivery' : 'Back online');
+    });
+
+    // ------- map mock interaction -------
+    const map = $('#mapMock');
+    const statusEl = $('#routeStatus');
+    const riskEl = $('#riskLevel');
+
+    const riskHistory = [ // mock incident heat
+      {x:[0,33], y:[0,33], level:'Low'},
+      {x:[34,66], y:[0,33], level:'Medium'},
+      {x:[67,100], y:[0,33], level:'High'},
+      {x:[0,50], y:[34,100], level:'Medium'},
+      {x:[51,100], y:[34,100], level:'Low'},
+    ];
+
+    function computeRisk(px, py){
+      // px/py in % based on click position
+      for(const r of riskHistory){
+        if(px>=r.x[0] && px<=r.x[1] && py>=r.y[0] && py<=r.y[1]) return r.level;
+      }
+      return 'Unknown';
+    }
+
+    function addPin(px, py){
+      const pin = document.createElement('div');
+      pin.className = 'pin';
+      pin.style.left = px + '%';
+      pin.style.top = py + '%';
+      pin.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7z" fill="%23ef4444"/><circle cx="12" cy="9" r="3" fill="white"/></svg>';
+      map.appendChild(pin);
+    }
+
+    map.addEventListener('click', (e)=>{
+      const rect = map.getBoundingClientRect();
+      const px = Math.round(((e.clientX - rect.left) / rect.width) * 100);
+      const py = Math.round(((e.clientY - rect.top) / rect.height) * 100);
+      addPin(px, py);
+      const risk = computeRisk(px, py);
+      riskEl.textContent = risk;
+      riskEl.style.background = risk==='High' ? 'rgba(239,68,68,.25)' : risk==='Medium' ? 'rgba(245,158,11,.25)' : 'rgba(52,211,153,.25)';
+      statusEl.textContent = 'Route planned';
+      toast(`Route set. Risk level: ${risk}`);
+    });
+
+    $('#simulateRoute').addEventListener('click', ()=>{
+      statusEl.textContent = 'Navigating…';
+      setTimeout(()=>statusEl.textContent='Arrived ✔', 2200);
+    });
+
+    // ------- SOS flow (simulated) -------
+    const sosModal = $('#sosModal');
+    $('#sosBtn').addEventListener('click', async ()=>{
+      const pos = await new Promise(resolve=>{
+        if(navigator.geolocation){
+          navigator.geolocation.getCurrentPosition(({coords})=>resolve({lat:coords.latitude.toFixed(4), lon:coords.longitude.toFixed(4)}), ()=>resolve({lat:'—',lon:'—'}), {timeout:1500});
+        } else resolve({lat:'—',lon:'—'});
+      });
+      $('#sosLoc').textContent = `${pos.lat}, ${pos.lon}`;
+      $('#sosMode').textContent = OFFLINE ? 'Offline Fallback (SMS/Mesh/Sat)' : 'Online (Data)';
+      $('#sosEta').textContent = OFFLINE ? 'Varies (relay based)' : '~6–8 min';
+      $('#sosStatus').textContent = OFFLINE ? 'SOS queued for fallback delivery.' : 'SOS sent to responders.';
+      sosModal.showModal();
+      toast('SOS triggered');
+    });
+    $('#closeModal').addEventListener('click', ()=>sosModal.close());
+
+    // ------- Translation (toy dictionary) -------
+    const DICT = {
+      'I need help': {hi:'मुझे मदद चाहिए', mr:'मला मदत हवी आहे', ta:'எனக்கு உதவி வேண்டும்', bn:'আমার সাহায্য দরকার', es:'Necesito ayuda', fr:'J\'ai besoin d\'aide'},
+      'Call the ambulance': {hi:'एंबुलेंस बुलाइए', mr:'रुग्णवाहिका बोलवा', ta:'ஆம்புலன்ஸைக் கூப்பிடுங்கள்', bn:'অ্যাম্বুলেন্স ডাকুন', es:'Llama a la ambulancia', fr:'Appelez l\'ambulance'},
+      'I am lost': {hi:'मैं रास्ता भटक गया/गई', mr:'मी हरवलो/हरवले', ta:'நான் திசைதெரியாமல் இருக்கிறேன்', bn:'আমি পথ হারিয়েছি', es:'Estoy perdido/a', fr:'Je suis perdu(e)'},
+      'Where is the police station?': {hi:'पुलिस स्टेशन कहाँ है?', mr:'पोलीस स्टेशन कुठे आहे?', ta:'போலீஸ் ஸ்டேஷன் எங்கு?', bn:'পুলিশ স্টেশন কোথায়?', es:'¿Dónde está la comisaría?', fr:'Où est le commissariat ?'}
+    };
+    function updateTranslation(){
+      const phrase = $('#phraseSel').value; const lang = $('#langSel').value;
+      $('#translation').textContent = (DICT[phrase]||{})[lang] || '—';
+    }
+    $('#phraseSel').addEventListener('change', updateTranslation);
+    $('#langSel').addEventListener('change', updateTranslation);
+    updateTranslation();
+    $('#copyTrans').addEventListener('click', ()=>{
+      const text = $('#translation').textContent; if(!text || text==='—'){toast('Nothing to copy');return}
+      navigator.clipboard?.writeText(text); toast('Translation copied');
+    });
+
+    // ------- Volunteers (localStorage) -------
+    const vList = $('#vList');
+    function renderVols(){
+      const data = JSON.parse(localStorage.getItem('tripshield_vols')||'[]');
+      vList.innerHTML = '';
+      if(!data.length){ vList.innerHTML = '<div class="row"><em>No volunteers yet</em></div>'; return; }
+      data.slice(-5).reverse().forEach(v=>{
+        const div = document.createElement('div');
+        div.className='row';
+        div.innerHTML = `<span>${v.name} • ${v.area}</span><span class="pill">${v.phone}</span>`;
+        vList.appendChild(div);
+      });
+    }
+    renderVols();
+    $('#volForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name=$('#vName').value.trim(), phone=$('#vPhone').value.trim(), area=$('#vArea').value.trim();
+      if(!(name&&phone&&area)) return;
+      const data = JSON.parse(localStorage.getItem('tripshield_vols')||'[]');
+      data.push({name, phone, area, ts: Date.now()});
+      localStorage.setItem('tripshield_vols', JSON.stringify(data));
+      e.target.reset(); renderVols(); toast('Registered as volunteer');
+    });
+
+    // ------- Ratings -------
+    const stars = $('#stars');
+    let rating = +(localStorage.getItem('tripshield_rating')||0);
+    function paintStars(){
+      stars.innerHTML='';
+      for(let i=1;i<=5;i++){
+        const s = document.createElement('div'); s.className='star'+(i<=rating?' active':''); s.innerHTML=`<svg viewBox="0 0 24 24"><path fill="${i<=rating?'#f4d35e':'#94a3b8'}" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>`;
+        s.addEventListener('click', ()=>{ rating=i; localStorage.setItem('tripshield_rating', rating); paintStars(); $('#ratingMsg').textContent = `You rated this area ${rating}/5`; });
+        stars.appendChild(s);
+      }
+      if(rating) $('#ratingMsg').textContent = `You rated this area ${rating}/5`;
+    }
+    paintStars();
+  </script>
+    <script>
+  // ------- Simple Auth (localStorage demo) -------
+const signupForm = document.getElementById('signupForm');
+const loginForm = document.getElementById('loginForm');
+const authMsg = document.getElementById('authMsg');
+
+signupForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const email = document.getElementById('suEmail').value.trim();
+  const pass = document.getElementById('suPass').value.trim();
+  
+  if(!email || !pass) return toast("Fill all fields");
+  
+  localStorage.setItem('tripshield_user', JSON.stringify({email, pass}));
+  toast("Account created! Please login.");
+  signupForm.reset();
+});
+
+loginForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const email = document.getElementById('liEmail').value.trim();
+  const pass = document.getElementById('liPass').value.trim();
+  const user = JSON.parse(localStorage.getItem('tripshield_user') || '{}');
+  
+  if(email === user.email && pass === user.pass){
+    localStorage.setItem('tripshield_loggedin', '1');
+    authMsg.textContent = `Welcome, ${user.email}`;
+    toast("Login successful!");
+    loginForm.reset();
+  } else {
+    toast("Invalid credentials");
+  }
+});
+
+// On load, check login
+if(localStorage.getItem('tripshield_loggedin') === '1'){
+  const user = JSON.parse(localStorage.getItem('tripshield_user')||'{}');
+  if(user.email) authMsg.textContent = `Welcome, ${user.email}`;
+}
+    </script>
+</body>
+</html>
